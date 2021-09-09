@@ -18,39 +18,25 @@ auth.set_access_token(access_token, access_secret)
 
 api = tweepy.API(auth)
 
-api.create_friendship(1005593216966590464)
+api.create_friendship(#twitter user id)
 
-responses = ["Silence, you Canadian oppressor", "How about you shut up about issues you know nothing about.", "Woooowww...coming from a white colonizer", "Your ethnicity is a sham", "Go back to Britain...Oh wait..."]
+responses = ["Thank you for replying!", "I hope your day is going great!", "Keep up the great work!", "What an interesting perspective!", "Love your style!"]
 
 class MyStreamListener(tweepy.StreamListener):
     def on_status(self, status):
-        if status.user.id_str != '1005593216966590464':
+        if status.user.id_str != #'twitter user id':
             return
-        bobified_string = self.bobify(status.text)
         #response = random.choice(responses(0, -1)(i) for i in responses)
-        api.update_status(f"@MapleAndTea {bobified_string[0:35]}...{random.choice(responses)}", status.id)
+        api.update_status(f"{random.choice(responses)}", status.id)
 
-
-    def bobify(self, message):
-        bobify_string =''.join(choice((str.upper, str.lower))(c) for c in message)
-
-        return bobify_string
 
 
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
 
-myStream.filter(follow=['1005593216966590464'], is_async=True)
+myStream.filter(follow=[#'twitter user Id'], is_async=True)
 
-# username = "PastaAndCannoli"
 
-# user = api.get_user(username)
-
-# id = user.id_str
-
-# print(id)
-
-#1407713509950083074
 
 
 
